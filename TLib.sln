@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TLib.Util", "TLib.Util\TLib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TLib.Device.Test", "TLib.Device.Test\TLib.Device.Test.csproj", "{1D2D092D-C3F7-4BA2-B38D-D93F39FB9656}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TLib.Winform", "TLib.Winform\TLib.Winform.csproj", "{838D1900-97E0-4593-8388-E2DEB9A2454D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1D2D092D-C3F7-4BA2-B38D-D93F39FB9656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D2D092D-C3F7-4BA2-B38D-D93F39FB9656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D2D092D-C3F7-4BA2-B38D-D93F39FB9656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{838D1900-97E0-4593-8388-E2DEB9A2454D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{838D1900-97E0-4593-8388-E2DEB9A2454D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{838D1900-97E0-4593-8388-E2DEB9A2454D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{838D1900-97E0-4593-8388-E2DEB9A2454D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
