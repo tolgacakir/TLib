@@ -33,15 +33,13 @@ namespace TLib.Device.Plc.Concrete.Sharp7
 
         public void GetDataFromBuffer(in byte[] buffer, ref Tout data)
         {
-            var properties = data.GetType().GetProperties();
-            foreach (var p in properties)
+            foreach (var p in data.GetType().GetProperties())
             {
                 int address = _readDataMaps.FirstOrDefault(d=>d.PropertyName == p.Name).Address;
+                int byteSize = _readDataMaps.FirstOrDefault(d => d.PropertyName == p.Name).ByteSize;
                 object value = null;
-
                 if (p.PropertyType == typeof(string))
                 {
-                    int byteSize = _readDataMaps.FirstOrDefault(d => d.PropertyName == p.Name).ByteSize;
                     value = S7.GetCharsAt(buffer, address, byteSize);
                 }
                 else if (p.PropertyType == typeof(byte))
@@ -52,7 +50,6 @@ namespace TLib.Device.Plc.Concrete.Sharp7
                 {
                     throw new Exception($"Invalid property type: {p.PropertyType}");
                 }
-
                 p.SetValue(data,value);
             }
         }

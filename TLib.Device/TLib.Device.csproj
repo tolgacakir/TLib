@@ -50,8 +50,6 @@
     <Compile Include="Plc\Concrete\Sharp7\DataMap.cs" />
     <Compile Include="Plc\Concrete\Sharp7\S7DataMapper.cs" />
     <Compile Include="Plc\Concrete\Sharp7\S7PlcDal.cs" />
-    <Compile Include="Plc\Concrete\Sharp7\TestReadData.cs" />
-    <Compile Include="Plc\Concrete\Sharp7\TestWriteData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

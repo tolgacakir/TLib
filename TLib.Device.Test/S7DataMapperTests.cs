@@ -10,7 +10,7 @@ using TLib.Device.Plc.Concrete.Sharp7;
 namespace TLib.Device.Test
 {
     [TestClass]
-    public class GenericS7DataMapperTests
+    public class S7DataMapperTests
     {
 
         [TestMethod]
@@ -44,7 +44,19 @@ namespace TLib.Device.Test
             dataMapper.GetDataFromBuffer(buffer,ref readData);
 
             Assert.AreEqual("cakir", readData.ProductNumber);
-        }        
+        }       
+    }
+
+    public class TestReadData : IPlcData
+    {
+        public byte PlcRun { get; set; }
+        public string ProductNumber { get; set; }
+    }
+
+    public class TestWriteData : IPlcData
+    {
+        public byte PcRun { get; set; }
+        public byte PcResponse { get; set; }
     }
 
 }
