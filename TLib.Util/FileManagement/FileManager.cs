@@ -18,5 +18,10 @@ namespace TLib.Util.FileManagement
         {
             return File.ReadAllText(path);
         }
+
+        public static bool Exists(string path)
+        {
+            return File.Exists(path);
+        }
     }
 }

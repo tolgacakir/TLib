@@ -45,11 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Plc\Abstract\IPlcDal.cs" />
-    <Compile Include="Plc\Abstract\IPlcData.cs" />
-    <Compile Include="Plc\Concrete\Json\JsonPlcDal.cs" />
-    <Compile Include="Plc\Concrete\Sharp7\DataMap.cs" />
-    <Compile Include="Plc\Concrete\Sharp7\S7DataMapper.cs" />
     <Compile Include="Plc\Concrete\Sharp7\S7PlcDal.cs" />
+    <Compile Include="Plc\Concrete\Json\JsonPlcDal.cs" />
+    <Compile Include="Plc\Exceptions\PlcNoConnectionException.cs" />
+    <Compile Include="Printer\Abstract\IPrinter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +57,10 @@
       <Name>TLib.Util</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BarcodeScanner\" />
+    <Folder Include="Printer\Concrete\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
