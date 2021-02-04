@@ -10,7 +10,7 @@ namespace TLib.Core.Ioc
     public abstract class DependencyResolver
     {
         protected readonly IContainer _container;
-        public DependencyResolver()
+        protected DependencyResolver()
         {
             _container = BuildContainer();
         }
