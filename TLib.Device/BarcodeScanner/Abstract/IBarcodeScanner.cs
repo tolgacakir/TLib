@@ -24,11 +24,11 @@ namespace TLib.Device.BarcodeScanner.Abstract
     public class BarcodeEventArgs : EventArgs
     {
         public string Barcode { get; }
-        public string ScannerIpAddress { get; set; }
-        public BarcodeEventArgs(string barcode, string scannerIpAddress)
+        public string ScannerId { get; set; }
+        public BarcodeEventArgs(string barcode, string scannerId)
         {
             Barcode = barcode;
-            ScannerIpAddress = scannerIpAddress;
+            ScannerId = scannerId;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace TLib.Device.BarcodeScanner.Concrete.Json
 {
     public class JsonBarcodeScanner : IBarcodeScanner
     {
-        public string Id { get; }
+        public int Id { get; }
         public bool ConnectionStatus { get; private set; }
 
         private string _barcode;
@@ -25,13 +25,13 @@ namespace TLib.Device.BarcodeScanner.Concrete.Json
                 if (!string.IsNullOrEmpty(value) && _barcode != value && value != _couldNotScannedCode)
                 {
                     _barcode = value;
-                    BarcodeScanned?.Invoke(this, new BarcodeEventArgs(value, Id));
+                    BarcodeScanned?.Invoke(this, new BarcodeEventArgs(value, Id.ToString()));
                 }
                 else if (_barcode != value && value == _couldNotScannedCode)
                 {
                     _barcode = "";
                     WriteToFile(_barcode);
-                    BarcodeCouldNotScanned?.Invoke(this, new BarcodeEventArgs(value, Id));
+                    BarcodeCouldNotScanned?.Invoke(this, new BarcodeEventArgs(value, Id.ToString()));
                 }
                 else
                 {
@@ -47,7 +47,7 @@ namespace TLib.Device.BarcodeScanner.Concrete.Json
         public event BarcodeScannedEventHandler BarcodeScanned;
         public event BarcodeCouldNotScannedEventHandler BarcodeCouldNotScanned;
 
-        public JsonBarcodeScanner(string id, int interval = 500, string couldNotScannedCode="ReadError")
+        public JsonBarcodeScanner(int id = 1, int interval = 500, string couldNotScannedCode="ReadError")
         {
             Id = id;
             _couldNotScannedCode = couldNotScannedCode;
