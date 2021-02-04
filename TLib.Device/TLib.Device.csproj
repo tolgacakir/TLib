@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Sharp7, Version=1.1.75.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sharp7.1.1.75\lib\net40\Sharp7.dll</HintPath>
     </Reference>
@@ -44,10 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Plc\Abstract\IPlcDal.cs" />
-    <Compile Include="Plc\Concrete\Sharp7\S7PlcDal.cs" />
-    <Compile Include="Plc\Concrete\Json\JsonPlcDal.cs" />
-    <Compile Include="Plc\Exceptions\PlcNoConnectionException.cs" />
+    <Compile Include="BarcodeScanner\Abstract\IBarcodeScanner.cs" />
+    <Compile Include="BarcodeScanner\Concrete\Json\JsonBarcodeScanner.cs" />
+    <Compile Include="Plc\Abstract\IPlcClient.cs" />
+    <Compile Include="Plc\Concrete\AutoConnector\PlcAutoConnector.cs" />
+    <Compile Include="Plc\Concrete\Sharp7\S7PlcClient.cs" />
+    <Compile Include="Plc\Concrete\Json\JsonPlcClient.cs" />
+    <Compile Include="Exceptions\DeviceNoConnectionException.cs" />
     <Compile Include="Printer\Abstract\IPrinter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,7 +64,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BarcodeScanner\" />
     <Folder Include="Printer\Concrete\" />
   </ItemGroup>
   <ItemGroup>
