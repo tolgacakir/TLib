@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace TLib.Device.Test.TestEntities
 {
-    public class PcResponseDataBlock
+    public class PlcRequestDataBlock
+    {
+        public byte PlcRun { get; set; }
+        public PlcRequest[] PlcRequests { get; set; } = new PlcRequest[] { new PlcRequest() };
+    }
+
+    public class PlcRequest
     {
         public byte Order { get; set; }
         public byte BoxId { get; set; }
         public string Barcode { get; set; } = "";
-        public byte Response { get; set; }
     }
 }
