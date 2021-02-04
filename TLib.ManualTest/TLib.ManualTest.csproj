@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="DataAccessLayer\Abstract\IDummyPlcClient.cs" />
     <Compile Include="DataAccessLayer\Concrete\Json\JsonDummyPlcClient.cs" />
+    <Compile Include="DataAccessLayer\Concrete\S7\S7DummyPlcClient.cs" />
     <Compile Include="Entities\PcResponseDataBlock.cs" />
     <Compile Include="Entities\PlcRequestDataBlock.cs" />
     <Compile Include="FrmBarcodeScannerTest.cs">
@@ -64,6 +65,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmPlcTest.resx">
+      <DependentUpon>FrmPlcTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -87,10 +91,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TLib.Core\TLib.Core.csproj">
-      <Project>{4447f892-fd86-440d-81fd-acda7d9c4e84}</Project>
-      <Name>TLib.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TLib.Device\TLib.Device.csproj">
       <Project>{18c9e1c1-81d7-4731-bdf8-e6deb2fcd3ec}</Project>
       <Name>TLib.Device</Name>
