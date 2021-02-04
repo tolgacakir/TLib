@@ -65,6 +65,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmBarcodeScannerTest.resx">
+      <DependentUpon>FrmBarcodeScannerTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmPlcTest.resx">
       <DependentUpon>FrmPlcTest.cs</DependentUpon>
     </EmbeddedResource>

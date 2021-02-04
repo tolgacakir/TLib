@@ -16,7 +16,7 @@ namespace TLib.ManualTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPlcTest());
+            Application.Run(new FrmBarcodeScannerTest());
         }
     }
 }
