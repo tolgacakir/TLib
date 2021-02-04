@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TLib.Device.Plc.Abstract
 {
-    public interface IPlcDal
+    public interface IPlcClient
     {
         bool Connect();
         void Disconnect();
