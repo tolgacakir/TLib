@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessLayer\Abstract\IDummyPlcClient.cs" />
+    <Compile Include="DataAccessLayer\Concrete\Json\JsonDummyPlcClient.cs" />
     <Compile Include="Entities\PcResponseDataBlock.cs" />
     <Compile Include="Entities\PlcRequestDataBlock.cs" />
     <Compile Include="FrmBarcodeScannerTest.cs">
