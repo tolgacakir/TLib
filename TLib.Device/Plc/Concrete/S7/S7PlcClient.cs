@@ -8,7 +8,7 @@ using TLib.Device.Plc.Abstract;
 using TLib.Device.Plc.Concrete.AutoConnector;
 using TLib.Device.Plc.Exceptions;
 
-namespace TLib.Device.Plc.Concrete.Sharp7
+namespace TLib.Device.Plc.Concrete.S7
 {
     public abstract class S7PlcClient : IPlcClient
     {
@@ -20,17 +20,29 @@ namespace TLib.Device.Plc.Concrete.Sharp7
         protected const int NO_ERROR = 0;
         protected readonly S7Client _s7Client;
         protected readonly PlcAutoConnector _plcReconnector;
-        protected S7PlcClient(string ipAddress, int rack=0, int slot=1, bool autoReconnect=true)
+        protected S7PlcClient(string ipAddress, int rack = 0, int slot = 1, bool autoReconnect = true)
         {
             IpAddress = ipAddress;
             Rack = rack;
             Slot = slot;
 
-            _s7Client = new S7Client();
-            _s7Client.ConnTimeout = 1000;
-            _s7Client.RecvTimeout = 500;
-            _s7Client.SendTimeout = 500;
+            _s7Client = new S7Client
+            {
+                ConnTimeout = 1000,
+                RecvTimeout = 500,
+                SendTimeout = 500
+            };
 
+            if (autoReconnect)
+            {
+                _plcReconnector = new PlcAutoConnector(this);
+            }
+        }
+
+        protected S7PlcClient(S7Client s7Client, bool autoReconnect = true)
+        {
+            //TODO: The ip address, rack and slot are missing when the object creating from here.
+            _s7Client = s7Client;
             if (autoReconnect)
             {
                 _plcReconnector = new PlcAutoConnector(this);
@@ -39,7 +51,8 @@ namespace TLib.Device.Plc.Concrete.Sharp7
 
         public bool Connect()
         {
-            return _s7Client.ConnectTo(IpAddress,Rack,Slot) == NO_ERROR;
+            return !_s7Client.Connected
+                || _s7Client.ConnectTo(IpAddress, Rack, Slot) == NO_ERROR;
         }
 
         public void Disconnect()
@@ -71,7 +84,7 @@ namespace TLib.Device.Plc.Concrete.Sharp7
             {
                 throw new DeviceNoConnectionException($"Data reading is not completed. S7 Plc has not connection. Ip: {IpAddress}");
             }
-            
+
         }
 
         protected bool Set(int dbNumber, int start, in byte[] buffer)
@@ -98,7 +111,12 @@ namespace TLib.Device.Plc.Concrete.Sharp7
             {
                 throw new DeviceNoConnectionException($"Data writing is not completed. S7 Plc has not connection. Ip: {IpAddress}");
             }
-            
+
+        }
+
+        protected S7Client GetS7PlcClient()
+        {
+            return _s7Client;
         }
     }
 }

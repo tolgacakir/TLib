@@ -51,9 +51,9 @@
     <Compile Include="BarcodeScanner\Concrete\Json\JsonBarcodeScanner.cs" />
     <Compile Include="Plc\Abstract\IPlcClient.cs" />
     <Compile Include="Plc\Concrete\AutoConnector\PlcAutoConnector.cs" />
-    <Compile Include="Plc\Concrete\Sharp7\S7PlcClient.cs" />
     <Compile Include="Plc\Concrete\Json\JsonPlcClient.cs" />
     <Compile Include="Exceptions\DeviceNoConnectionException.cs" />
+    <Compile Include="Plc\Concrete\S7\S7PlcClient.cs" />
     <Compile Include="Printer\Abstract\IPrinter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
