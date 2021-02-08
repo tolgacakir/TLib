@@ -22,7 +22,7 @@ namespace TLib.Device.Plc.Concrete.AutoConnector
             //TODO: asenkron erişimde sorun çıkıyor. bu yüzden timer durdurulup tekrar başlatılıyor. farklı şekilde çözülebilir.
             _timer.Stop();
 
-            if (! _plcClient.ConnectionStatus)
+            if (! _plcClient.Connected)
             {
                 _plcClient.Connect();
             }
