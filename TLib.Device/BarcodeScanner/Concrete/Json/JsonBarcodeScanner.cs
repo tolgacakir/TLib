@@ -13,8 +13,8 @@ namespace TLib.Device.BarcodeScanner.Concrete.Json
 {
     public class JsonBarcodeScanner : IBarcodeScanner
     {
-        public int Id { get; }
-        public bool ConnectionStatus { get; private set; }
+        public string Name { get; }
+        public bool Connected { get; private set; }
 
         private string _barcode;
         public string Barcode 
@@ -26,13 +26,13 @@ namespace TLib.Device.BarcodeScanner.Concrete.Json
                 if (!string.IsNullOrEmpty(value) && _barcode != value && value != _couldNotScannedCode)
                 {
                     _barcode = value;
-                    BarcodeScanned?.Invoke(this, new BarcodeEventArgs(value, Id.ToString()));
+                    BarcodeScanned?.Invoke(this, new BarcodeEventArgs(value, Name.ToString()));
                 }
                 else if (_barcode != value && value == _couldNotScannedCode)
                 {
                     _barcode = "";
                     WriteToFile(_barcode);
-                    BarcodeCouldNotScanned?.Invoke(this, new BarcodeEventArgs(value, Id.ToString()));
+                    BarcodeCouldNotScanned?.Invoke(this, new BarcodeEventArgs(value, Name.ToString()));
                 }
                 else
                 {
@@ -48,16 +48,16 @@ namespace TLib.Device.BarcodeScanner.Concrete.Json
         public event BarcodeScannedEventHandler BarcodeScanned;
         public event BarcodeCouldNotScannedEventHandler BarcodeCouldNotScanned;
 
-        public JsonBarcodeScanner(ISynchronizeInvoke sync, int id = 1, int interval = 500, string couldNotScannedCode="NoRead")
+        public JsonBarcodeScanner(ISynchronizeInvoke sync, string name = "1", int interval = 500, string couldNotScannedCode="NoRead")
         {
-            Id = id;
+            Name = name;
             _couldNotScannedCode = couldNotScannedCode;
             _timer = new Timer(interval);
             _timer.SynchronizingObject = sync;
             _timer.Elapsed += _timer_Elapsed;
 
             var folder = "JsonBarcodeScanner";
-            _readFilePath = $"{folder}\\{id}_BarcodeScanner.txt";
+            _readFilePath = $"{folder}\\{name}_BarcodeScanner.txt";
 
 
             CreateRoot(folder);
@@ -86,13 +86,13 @@ namespace TLib.Device.BarcodeScanner.Concrete.Json
         {
             return Task.Run(() =>
             {
-                if (ConnectionStatus)
+                if (Connected)
                 {
                     return File.ReadAllText(_readFilePath);
                 }
                 else
                 {
-                    throw new DeviceNoConnectionException($"The scanner connection is NOT OK. Scanner Id: {Id}");
+                    throw new DeviceNoConnectionException($"The scanner connection is NOT OK. Scanner Name: {Name}");
                 }
             });
         }
@@ -104,14 +104,14 @@ namespace TLib.Device.BarcodeScanner.Concrete.Json
 
         public bool Connect()
         {
-            ConnectionStatus = true;
+            Connected = true;
             _timer.Start();
             return true;
         }
 
         public void Disconnect()
         {
-            ConnectionStatus = false;
+            Connected = false;
             _timer.Stop();
         }
 
