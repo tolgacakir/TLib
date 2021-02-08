@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace TLib.Device.BarcodeScanner.Abstract
 {
-    public interface IBarcodeScanner
+    public interface IBarcodeScanner : IDevice
     {
-        string Barcode { get; }
-        bool Connect();
-        void Disconnect();
-        bool ConnectionStatus { get; }
 
         event BarcodeScannedEventHandler BarcodeScanned;
         event BarcodeCouldNotScannedEventHandler BarcodeCouldNotScanned;

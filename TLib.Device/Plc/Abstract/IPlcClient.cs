@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace TLib.Device.Plc.Abstract
 {
-    public interface IPlcClient
+    public interface IPlcClient : IDevice
     {
-        bool Connect();
-        void Disconnect();
-        bool ConnectionStatus { get; }
     }
 }
