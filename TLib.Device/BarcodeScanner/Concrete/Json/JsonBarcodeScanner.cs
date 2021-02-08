@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -47,17 +48,18 @@ namespace TLib.Device.BarcodeScanner.Concrete.Json
         public event BarcodeScannedEventHandler BarcodeScanned;
         public event BarcodeCouldNotScannedEventHandler BarcodeCouldNotScanned;
 
-        public JsonBarcodeScanner(int id = 1, int interval = 500, string couldNotScannedCode="ReadError")
+        public JsonBarcodeScanner(ISynchronizeInvoke sync, int id = 1, int interval = 500, string couldNotScannedCode="NoRead")
         {
             Id = id;
             _couldNotScannedCode = couldNotScannedCode;
             _timer = new Timer(interval);
+            _timer.SynchronizingObject = sync;
             _timer.Elapsed += _timer_Elapsed;
 
             var folder = "JsonBarcodeScanner";
             _readFilePath = $"{folder}\\{id}_BarcodeScanner.txt";
 
-            
+
             CreateRoot(folder);
         }
 
@@ -73,23 +75,26 @@ namespace TLib.Device.BarcodeScanner.Concrete.Json
             }
         }
 
-        private void _timer_Elapsed(object sender, ElapsedEventArgs e)
+        private async void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            _timer.Stop();
-            Barcode = ScanBarcode();
-            _timer.Start();
+            //_timer.Stop();
+            Barcode = await ScanBarcodeAsync();
+            //_timer.Start();
         }
 
-        private string ScanBarcode()
+        private Task<string> ScanBarcodeAsync()
         {
-            if (ConnectionStatus)
+            return Task.Run(() =>
             {
-                return File.ReadAllText(_readFilePath);
-            }
-            else
-            {
-                throw new DeviceNoConnectionException($"The scanner connection is NOT OK. Scanner Id: {Id}");
-            }
+                if (ConnectionStatus)
+                {
+                    return File.ReadAllText(_readFilePath);
+                }
+                else
+                {
+                    throw new DeviceNoConnectionException($"The scanner connection is NOT OK. Scanner Id: {Id}");
+                }
+            });
         }
 
         private void WriteToFile(string barcode)
@@ -106,8 +111,8 @@ namespace TLib.Device.BarcodeScanner.Concrete.Json
 
         public void Disconnect()
         {
-            _timer.Stop();
             ConnectionStatus = false;
+            _timer.Stop();
         }
 
     }
