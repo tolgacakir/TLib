@@ -34,8 +34,8 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Sharp7, Version=1.1.75.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sharp7.1.1.75\lib\net40\Sharp7.dll</HintPath>
+    <Reference Include="Sharp7, Version=1.1.78.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sharp7.1.1.78\lib\net40\Sharp7.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
