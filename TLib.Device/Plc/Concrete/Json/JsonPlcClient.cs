@@ -15,22 +15,21 @@ namespace TLib.Device.Plc.Concrete.Json
         where TRead : new()
         where TWrite : new()
     {
-        public bool ConnectionStatus { get; private set; }
+        public bool Connected { get; private set; }
 
-        public int Id { get; }
+        public string Name { get; }
+
         private readonly string _readFilePath;
         private readonly string _writeFilePath;
 
-        private bool _defaultWritingDataWrited;
-        private bool _defaultReadingDataWrited;
 
-        public JsonPlcClient(int id)
+        public JsonPlcClient(string name="1")
         {
-            Id = id;
+            Name = name;
 
             string folder = "JsonPlc";
-            _readFilePath = $"{folder}\\{id}_Plc_To_Pc.json";
-            _writeFilePath = $"{folder}\\{id}_Pc_To_Plc.json";
+            _readFilePath = $"{folder}\\{name}_Plc_To_Pc.json";
+            _writeFilePath = $"{folder}\\{name}_Pc_To_Plc.json";
 
             if (!Directory.Exists(folder))
             {
@@ -44,13 +43,13 @@ namespace TLib.Device.Plc.Concrete.Json
 
         public bool Connect()
         {
-            ConnectionStatus = true;
+            Connected = true;
             return true;
         }
 
         public void Disconnect()
         {
-            ConnectionStatus = false;
+            Connected = false;
         }
 
         protected void WriteDefault()
@@ -66,7 +65,7 @@ namespace TLib.Device.Plc.Concrete.Json
 
         protected bool Get(out TRead data)
         {
-            if (ConnectionStatus)
+            if (Connected)
             {
                 string json = File.ReadAllText(_readFilePath);
                 data = JsonConvert.DeserializeObject<TRead>(json);
@@ -74,13 +73,13 @@ namespace TLib.Device.Plc.Concrete.Json
             }
             else
             {
-                throw new DeviceNoConnectionException($"JsonPlc has not connection. Id: {Id}");
+                throw new DeviceNoConnectionException($"JsonPlc has not connection. Id: {Name}");
             }
         }
 
         protected bool Set(in TWrite data)
         {
-            if (ConnectionStatus)
+            if (Connected)
             {
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
                 File.WriteAllText(_writeFilePath, json);
@@ -88,7 +87,7 @@ namespace TLib.Device.Plc.Concrete.Json
             }
             else
             {
-                throw new DeviceNoConnectionException($"JsonPlc has not connection. Id: {Id}");
+                throw new DeviceNoConnectionException($"JsonPlc has not connection. Id: {Name}");
             }
         }
     }
