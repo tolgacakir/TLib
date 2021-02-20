@@ -9,12 +9,12 @@ namespace TLib.ManualTest.Entities
     public class PlcRequestDataBlock
     {
         public byte PlcRun { get; set; }
-        public PlcRequest[] PlcRequests { get; set; } = new PlcRequest[] { new PlcRequest() };
+        public PlcRequest[] PlcRequests { get; set; } = new PlcRequest[3];
     }
 
     public class PlcRequest
     {
-        public byte Order { get; set; }
+        public int Order { get; set; }
         public byte BoxId { get; set; }
         public string Barcode { get; set; } = "";
     }

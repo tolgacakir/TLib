@@ -8,7 +8,7 @@ namespace TLib.ManualTest.Entities
 {
     public class PcResponseDataBlock
     {
-        public byte Order { get; set; }
+        public short Order { get; set; }
         public byte BoxId { get; set; }
         public string Barcode { get; set; } = "";
         public byte Response { get; set; }

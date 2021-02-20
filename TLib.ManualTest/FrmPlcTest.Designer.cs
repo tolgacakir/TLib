@@ -29,12 +29,14 @@ namespace TLib.ManualTest
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtPlcRun = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPcResponse = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnGet = new System.Windows.Forms.Button();
             this.btnSet = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // txtPlcRun
@@ -89,6 +91,12 @@ namespace TLib.ManualTest
             this.btnSet.UseVisualStyleBackColor = true;
             this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmPlcTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,6 +123,7 @@ namespace TLib.ManualTest
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnGet;
         private System.Windows.Forms.Button btnSet;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

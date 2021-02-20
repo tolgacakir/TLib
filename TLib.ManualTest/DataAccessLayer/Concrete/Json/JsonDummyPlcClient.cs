@@ -11,7 +11,7 @@ namespace TLib.ManualTest.DataAccessLayer.Concrete.Json
 {
     public class JsonDummyPlcClient : JsonPlcClient<PlcRequestDataBlock,PcResponseDataBlock>, IDummyPlcClient
     {
-        public JsonDummyPlcClient(int id = 1) : base(id)
+        public JsonDummyPlcClient(string id = "1") : base(id)
         {
 
         }
