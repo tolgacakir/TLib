@@ -61,6 +61,7 @@
     <Compile Include="Exceptions\DeviceNoConnectionException.cs" />
     <Compile Include="Plc\Concrete\S7\S7PlcClient.cs" />
     <Compile Include="Printer\Abstract\IPrinter.cs" />
+    <Compile Include="Printer\Concrete\ZplPrinter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,9 +74,7 @@
       <Name>TLib.Util</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Printer\Concrete\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
