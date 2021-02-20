@@ -40,7 +40,7 @@ namespace TLib.Device.BarcodeScanner.Concrete.SckBarcodeScanner
         private const char ETX = (char)0x3;
 
 
-        public SckBarcodeScanner(string name, string ipAddress, int port, ISynchronizeInvoke syncInvoke=null, ILogger logger = null, double interval = 500, bool autoReconnect = true)
+        public SckBarcodeScanner(string name, string ipAddress, int port=2112, ISynchronizeInvoke syncInvoke=null, ILogger logger = null, double interval = 500, bool autoReconnect = true)
         {
             Name = name;
             IpAddress = ipAddress;
